@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] mountainNames = {"Matterhorn","Mont Blanc","Denali"};
     private static final String[] mountainLocations = {"Alps","Alps","Alaska"};
     private static final int[] mountainHeights ={4478,4808,6190};
-    public static final List<Mountain> MOUNTAINS = new ArrayList<Mountain>();
+    public static final List<Mountain> MOUNTAINS = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
