@@ -44,5 +44,4 @@ public class Mountain {
     public String getInfo() {
         return name + " is part of the " + location + " mountain range and is " + height + "m high.";
     }
-
 }
