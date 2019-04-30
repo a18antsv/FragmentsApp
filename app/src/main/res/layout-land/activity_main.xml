@@ -12,9 +12,9 @@
         android:id="@+id/fragment_listview_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_marginRight="8dp"
         android:layout_weight="1"
-        android:background="@android:color/holo_blue_light"
+        android:background="@color/colorPrimary"
         android:elevation="4dp">
     </FrameLayout>
 
@@ -22,9 +22,10 @@
         android:id="@+id/fragment_details_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_margin="0dp"
+        android:layout_marginLeft="8dp"
         android:layout_weight="1"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/colorPrimary"
         android:elevation="4dp">
     </FrameLayout>
 

@@ -12,7 +12,6 @@
         android:id="@+id/fragment_listview_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:background="@color/colorPrimary">
     </FrameLayout>
-
 </LinearLayout>

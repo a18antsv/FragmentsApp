@@ -14,9 +14,9 @@ import java.util.List;
 
 public class ListViewFragment extends Fragment {
 
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String ARG_COLUMN_COUNT = "column_count";
 
-    private int mColumnCount = 1;
+    private int columnCount = 1;
     private OnListFragmentInteractionListener listener;
     private RecyclerView recyclerView;
 
@@ -35,21 +35,20 @@ public class ListViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            columnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mountain_list, container, false);
-
         if(view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
-            if(mColumnCount <= 1) {
+            if(columnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new GridLayoutManager(context, columnCount));
             }
             recyclerView.setAdapter(new MountainRecyclerViewAdapter(MainActivity.MOUNTAINS, listener));
         }
@@ -72,7 +71,7 @@ public class ListViewFragment extends Fragment {
         listener = null;
     }
 
-    public void getAdapter(List<Mountain> list) {
+    public void setAdapter(List<Mountain> list) {
         recyclerView.setAdapter(new MountainRecyclerViewAdapter(list, listener));
     }
 

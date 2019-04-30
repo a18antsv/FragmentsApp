@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -32,45 +31,15 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new FetchData().execute();
-
         if(findViewById(R.id.fragment_listview_container) != null) {
-            if(savedInstanceState != null) {
-                return;
+            if(savedInstanceState == null) {
+                new FetchData().execute();
             }
             listViewFragment = new ListViewFragment();
             listViewFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_listview_container, listViewFragment).commit();
+                    .replace(R.id.fragment_listview_container, listViewFragment).commit();
         }
-
-        /*
-        TODO: You should create an app that uses fragments and orientation
-
-        TODO: 1 - Create a fragment (list) to hold a ListView of Mountains
-        See: https://developer.android.com/training/basics/fragments/fragment-ui.html
-
-        TODO: 2 - Create a fragment (blank) to hold a details view of Mountain
-        See: https://developer.android.com/training/basics/fragments/fragment-ui.html
-
-        TODO: 3 - Create a separate layout for landscape orientation
-        See: https://developer.android.com/training/multiscreen/screensizes.html
-        See: https://developer.android.com/training/multiscreen/screensizes.html#alternative-layouts
-
-        TODO: 4 - The layout in portrait mode should only display the list fragment and when
-                  pressing a list item the details fragment should replace the list fragment
-                  and show all the Mountain data.
-
-        TODO: 5 - The layout in landscape mode should display both the list fragment and the
-                  details fragment. The details fragment should display details of the currently
-                  selected list item.
-
-        */
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override
@@ -91,7 +60,13 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
             transaction.replace(R.id.fragment_listview_container, detailsFragment);
             transaction.addToBackStack(null);
         }
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     private class FetchData extends AsyncTask<Void,Void,String>{
@@ -178,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
                     );
                     MOUNTAINS.add(m);
                 }
-                listViewFragment.getAdapter(MOUNTAINS);
+                listViewFragment.setAdapter(MOUNTAINS);
             } catch(JSONException e) {
                 throw new RuntimeException(e);
             }

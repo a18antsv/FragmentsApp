@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MountainDetailsFragment extends Fragment {
 
@@ -59,6 +61,19 @@ public class MountainDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mountain_details, container, false);
 
+        ImageView mountainImg = (ImageView) view.findViewById(R.id.mountain_img);
+        TextView mountainId = (TextView) view.findViewById(R.id.mountain_id);
+        TextView mountainName = (TextView) view.findViewById(R.id.mountain_name);
+        TextView mountainHeight = (TextView) view.findViewById(R.id.mountain_height);
+        TextView mountainLocation = (TextView) view.findViewById(R.id.mountain_location);
+        TextView mountainURL = (TextView) view.findViewById(R.id.mountain_url);
+
+        new DownloadImage(mountainImg).execute(mImgURL);
+        mountainId.setText("ID: " + mID);
+        mountainName.setText(mName);
+        mountainHeight.setText("Height: " + mHeight + "m");
+        mountainLocation.setText("Location: " + mLocation);
+        mountainURL.setText("Article: " + mArticleURL);
 
         return view;
     }

@@ -29,8 +29,7 @@ public class MountainRecyclerViewAdapter extends RecyclerView.Adapter<MountainRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int i) {
         holder.mountain = mountains.get(i);
-        holder.viewId.setText(Integer.toString(mountains.get(i).getId()));
-        holder.contentView.setText(mountains.get(i).getName());
+        holder.mountainName.setText(mountains.get(i).getName());
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,20 +48,18 @@ public class MountainRecyclerViewAdapter extends RecyclerView.Adapter<MountainRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
-        public final TextView viewId;
-        public final TextView contentView;
+        public final TextView mountainName;
         public Mountain mountain;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
-            viewId = (TextView) view.findViewById(R.id.id);
-            contentView = (TextView) view.findViewById(R.id.content);
+            mountainName = (TextView) view.findViewById(R.id.mountain_list_name);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + contentView.getText() + "'";
+            return super.toString() + " '" + mountainName.getText() + "'";
         }
     }
 }
